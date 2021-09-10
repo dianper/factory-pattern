@@ -1,6 +1,7 @@
 ﻿namespace FactoryPattern
 {
-    using FactoryPattern.Factory;
+    using FactoryPattern.Factories;
+    using FactoryPattern.Properties;
     using System;
 
     class Program
@@ -11,7 +12,7 @@
 
             Console.WriteLine("Choose an option to get property information:");
             Console.WriteLine("1 - Apartment");
-            Console.WriteLine("2 - Flat");
+            Console.WriteLine("2 - Hotel");
             Console.WriteLine("3 - House");
 
             var option = Console.ReadLine();
@@ -22,7 +23,7 @@
                     factory = new ApartmentFactory();
                     break;
                 case "2":
-                    factory = new FlatFactory();
+                    factory = new HotelFactory();
                     break;
                 case "3":
                     factory = new HouseFactory();
@@ -36,17 +37,21 @@
             if (factory != null)
             {
                 var property = factory.GetProperty();
-                var address = property.GetAddress();
-                var isForSale = property.IsForSale() ? "Yes" : "No";
+                Console.WriteLine($"This property is: {property.Type}");
 
-                Console.WriteLine("** Address **");
-                Console.WriteLine($"Street: { address.Street }");
-                Console.WriteLine($"City: { address.City }");
-                Console.WriteLine($"State: { address.State }");
-                Console.WriteLine($"ZipCode: { address.ZipCode }");
-                Console.WriteLine($"Country: { address.Country }");
-                Console.WriteLine();
-                Console.WriteLine($"** For Sale: { isForSale } **");
+                switch (property.Type)
+                {
+                    case Enum.Type.Hotel:
+                        Console.WriteLine($"Does this hotel have a swimming pool? {((Hotel)property).HasPool}");
+                        Console.WriteLine($"Does this hotel accept pets? {((Hotel)property).PetFriendly}");
+                        break;
+                    case Enum.Type.Apartment:
+                        Console.WriteLine($"Which floor? {((Apartment)property).Floor}");
+                        Console.WriteLine($"Condominium Fees? {((Apartment)property).CondominiumFees}");
+                        break;
+                    default:
+                        break;
+                }
             }
             else
             {

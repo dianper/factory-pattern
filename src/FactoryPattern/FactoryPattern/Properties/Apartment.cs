@@ -1,18 +1,18 @@
 ﻿namespace FactoryPattern.Properties
 {
-    using Models;
+    using FactoryPattern.Enum;
 
     public class Apartment : Property
     {
-        public override Address GetAddress() => new Address
+        public Apartment(bool isForSale = false)
         {
-            Street = "Av. da Republica, 2000",
-            City = "Vila Nova de Gaia",
-            State = "Porto",
-            ZipCode = "4405-000",
-            Country = "Portugal"
-        };
+            this.IsForSale = isForSale;
+            this.Type = Type.Apartment;
+            this.CondominiumFees = 45;
+            this.Floor = 8;
+        }
 
-        public override bool IsForSale() => false;
+        public decimal CondominiumFees { get; set; }
+        public int Floor { get; set; }
     }
 }

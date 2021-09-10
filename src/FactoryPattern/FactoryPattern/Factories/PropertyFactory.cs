@@ -1,4 +1,4 @@
-﻿namespace FactoryPattern.Factory
+﻿namespace FactoryPattern.Factories
 {
     using Properties;
 
