@@ -1,7 +1,7 @@
 # Factory Pattern
 Basic example of how to use this pattern
 
-## Different types of properties
+### Different types of properties
 - Property (base)
 - Apartment : Property
 - Hotel : Property
